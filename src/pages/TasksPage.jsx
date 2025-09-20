@@ -1,4 +1,3 @@
-// src/pages/TasksPage.jsx
 import { useEffect, useState } from 'react';
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
@@ -10,11 +9,21 @@ export default function TasksPage({ user, onLogout, darkMode, toggleDarkMode }) 
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState(search);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
   const API_URL = 'http://localhost:3001/tasks';
   const TASKS_PER_PAGE = 8;
+
+  // Debounce para búsqueda
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 300); // 300ms de espera
+
+    return () => clearTimeout(handler);
+  }, [search]);
 
   useEffect(() => {
     setLoading(true);
@@ -37,7 +46,7 @@ export default function TasksPage({ user, onLogout, darkMode, toggleDarkMode }) 
 
   useEffect(() => {
     setCurrentPage(1); // Reiniciar a la página 1 si cambia filtro o búsqueda
-  }, [filter, search]);
+  }, [filter, debouncedSearch]);
 
   const addTask = (task) => {
     setLoading(true);
@@ -79,16 +88,16 @@ export default function TasksPage({ user, onLogout, darkMode, toggleDarkMode }) 
       )
     );
 
-    toast.info(Tarea marcada como ${newCompleted ? "completada ✅" : "pendiente ⏳"});
+    toast.info(`Tarea marcada como ${newCompleted ? "completada ✅" : "pendiente ⏳"}`);
 
     try {
-      const res = await fetch(${API_URL}/${task.id}, {
+      const res = await fetch(`${API_URL}/${task.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...task, completed: newCompleted }),
       });
 
-      if (!res.ok) throw new Error(Error al actualizar tarea: ${res.status});
+      if (!res.ok) throw new Error(`Error al actualizar tarea: ${res.status}`);
 
       const updatedTask = await res.json();
       setTasks((prev) =>
@@ -105,7 +114,7 @@ export default function TasksPage({ user, onLogout, darkMode, toggleDarkMode }) 
 
   const deleteTask = (id) => {
     setLoading(true);
-    fetch(${API_URL}/${id}, {
+    fetch(`${API_URL}/${id}`, {
       method: 'DELETE',
     })
       .then((res) => {
@@ -129,13 +138,13 @@ export default function TasksPage({ user, onLogout, darkMode, toggleDarkMode }) 
     const updatedTask = { ...task, title: newTitle };
 
     try {
-      const res = await fetch(${API_URL}/${id}, {
+      const res = await fetch(`${API_URL}/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedTask),
       });
 
-      if (!res.ok) throw new Error(Error al editar tarea: ${res.status});
+      if (!res.ok) throw new Error(`Error al editar tarea: ${res.status}`);
 
       const data = await res.json();
       setTasks((prev) =>
@@ -156,7 +165,7 @@ export default function TasksPage({ user, onLogout, darkMode, toggleDarkMode }) 
         : filter === 'completed'
         ? task.completed
         : !task.completed;
-    const matchesSearch = task.title.toLowerCase().includes(search.toLowerCase());
+    const matchesSearch = task.title.toLowerCase().includes(debouncedSearch.toLowerCase());
     return matchesFilter && matchesSearch;
   });
 
@@ -218,23 +227,25 @@ export default function TasksPage({ user, onLogout, darkMode, toggleDarkMode }) 
         <div className="flex justify-center mt-6 gap-2 flex-wrap">
           <button
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-            className="px-3 py-1 bg-gray-200 text-white font-semibold dark:bg-gray-700 text-gray-200 rounded disabled:opacity-50"
+            disabled={currentPage === 1 || loading}
+            className="px-3 py-1 bg-gray-200 font-semibold dark:bg-gray-700 rounded disabled:opacity-50"
           >
             Anterior
           </button>
 
           {[...Array(totalPages)].map((_, index) => {
             const page = index + 1;
+            const isActive = currentPage === page;
             return (
               <button
                 key={page}
                 onClick={() => setCurrentPage(page)}
+                disabled={loading}
                 className={`px-3 py-1 rounded ${
-                  currentPage === page
+                  isActive
                     ? 'bg-blue-500 text-white'
-                    : 'bg-gray-200 text-gray-200 font-semibold dark:bg-gray-700 text-white'
-                }`}
+                    : 'bg-gray-200 font-semibold dark:bg-gray-700 text-gray-200 dark:text-white'
+                } ${loading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
               >
                 {page}
               </button>
@@ -243,8 +254,8 @@ export default function TasksPage({ user, onLogout, darkMode, toggleDarkMode }) 
 
           <button
             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-            disabled={currentPage === totalPages}
-            className="px-3 py-1 bg-gray-200 text-white font-semibold dark:bg-gray-700 text-gray-200 rounded disabled:opacity-50"
+            disabled={currentPage === totalPages || loading}
+            className="px-3 py-1 bg-gray-200 font-semibold dark:bg-gray-700 rounded disabled:opacity-50"
           >
             Siguiente
           </button>

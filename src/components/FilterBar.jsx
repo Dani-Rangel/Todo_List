@@ -1,3 +1,4 @@
+import React from 'react';
 export default function FilterBar({ filter, setFilter, search, setSearch, darkMode }) {
   return (
     <div className="flex flex-wrap gap-4 items-center justify-between mb-4">
