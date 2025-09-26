@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://dani-rangel.github.io/Todo_List/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
