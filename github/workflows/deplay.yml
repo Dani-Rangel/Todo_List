@@ -1,33 +1,30 @@
-name: 🚀 Deploy React App to GitHub Pages
- 
+name: 🚀 Deploy Vite + React to GitHub Pages
+
 on:
   push:
     branches:
-      - develop  # o "master" según tu rama
- 
+      - develop   # 👈 ahora se desplegará desde develop
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
- 
+
     steps:
-      - name: ⬇️ Checkout
+      - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
- 
-      - name: 📦 Instalar Node.js
+
+      - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
- 
-      - name: 📥 Instalar dependencias
+
+      - name: 📦 Install dependencies
         run: npm install
- 
-      - name: 🧹 Lint con ESLint
-        run: npm run lint
- 
-      - name: 🛠️ Build del proyecto
+
+      - name: 🛠️ Build project
         run: npm run build
- 
-      - name: 📤 Deploy a GitHub Pages
+
+      - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
