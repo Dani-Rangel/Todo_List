@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   test: {
-    base: "Todo_List",
+    base: "/Todo_List/",
     globals: true,         // Permite usar describe, test, expect sin importar
     environment: 'jsdom',  // Simula navegador para tests de React
   },
