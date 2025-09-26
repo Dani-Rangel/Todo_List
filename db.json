@@ -1,0 +1,156 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "usuario",
+      "password": "1234"
+    },
+    {
+      "id": "2",
+      "username": "admin",
+      "password": "5678"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "ccbe",
+      "title": "Montar bicicleta",
+      "completed": false,
+      "author": "usuario",
+      "date": "2025-09-17T02:50:31.443Z"
+    },
+    {
+      "id": "e38a",
+      "title": "Hacer Ejercicio",
+      "completed": false,
+      "author": "usuario",
+      "date": "2025-09-17T02:51:39.043Z"
+    },
+    {
+      "id": "62df",
+      "title": "Jugar Futbol",
+      "completed": true,
+      "author": "usuario",
+      "date": "2025-09-17T02:52:22.252Z"
+    },
+    {
+      "id": "61fa",
+      "title": "Hacer Proyecto formativo",
+      "completed": true,
+      "author": "usuario",
+      "date": "2025-09-17T02:52:48.973Z"
+    },
+    {
+      "id": "30bb",
+      "title": "Mejorar Escritura",
+      "completed": false,
+      "author": "usuario",
+      "date": "2025-09-17T02:53:02.924Z"
+    },
+    {
+      "id": "eb03",
+      "title": "Tarea Todo_Task",
+      "completed": true,
+      "author": "usuario",
+      "date": "2025-09-17T02:53:36.933Z"
+    },
+    {
+      "id": "d071",
+      "title": "Mejorar el Diseño ",
+      "completed": true,
+      "author": "usuario",
+      "date": "2025-09-17T02:53:55.988Z"
+    },
+    {
+      "id": "d221",
+      "title": "Estar Pendiente en Clase",
+      "completed": true,
+      "author": "usuario",
+      "date": "2025-09-17T02:54:22.779Z"
+    },
+    {
+      "id": "8989",
+      "title": "Levantarme Temprano",
+      "completed": false,
+      "author": "usuario",
+      "date": "2025-09-17T02:59:26.356Z"
+    },
+    {
+      "id": "4219",
+      "title": "Hacer la Tarea del Sabado",
+      "completed": false,
+      "author": "usuario",
+      "date": "2025-09-17T03:04:23.878Z"
+    },
+    {
+      "id": "7539",
+      "title": "Mejorar Mi Ingles",
+      "completed": false,
+      "author": "usuario",
+      "date": "2025-09-17T03:04:49.075Z"
+    },
+    {
+      "id": "bd5c",
+      "title": "Hacer Comida",
+      "completed": true,
+      "author": "usuario",
+      "date": "2025-09-17T03:06:02.282Z"
+    },
+    {
+      "id": "de06",
+      "title": "Sacar al Perro",
+      "completed": true,
+      "author": "usuario",
+      "date": "2025-09-17T03:06:14.221Z"
+    },
+    {
+      "id": "7ce9",
+      "title": "Salir a Comer",
+      "completed": true,
+      "author": "usuario",
+      "date": "2025-09-17T03:07:36.732Z"
+    },
+    {
+      "id": "11d2",
+      "title": "Mejorar Matematicas",
+      "completed": true,
+      "author": "usuario",
+      "date": "2025-09-17T03:08:02.611Z"
+    },
+    {
+      "id": "c559",
+      "title": "Limpiar la Casa",
+      "completed": false,
+      "author": "usuario",
+      "date": "2025-09-17T03:09:16.163Z"
+    },
+    {
+      "id": "0480",
+      "title": "Lavar la loza",
+      "completed": true,
+      "author": "usuario",
+      "date": "2025-09-17T03:09:25.403Z"
+    },
+    {
+      "id": "4e9a",
+      "title": "Dejar de Ver Tik Tok",
+      "completed": false,
+      "author": "usuario",
+      "date": "2025-09-17T03:10:46.439Z"
+    },
+    {
+      "id": "cfce",
+      "title": "Dejar de Dormir en Clase ",
+      "completed": false,
+      "author": "usuario",
+      "date": "2025-09-20T15:25:40.808Z"
+    },
+    {
+      "id": "8df6",
+      "title": "Dormir bien en las noches",
+      "completed": false,
+      "author": "usuario",
+      "date": "2025-09-20T15:31:36.576Z"
+    }
+  ]
+}
